@@ -42,17 +42,19 @@ public extension Project {
     if hasTests { targets.append(makeTestTarget(name: name)) }
     if hasUITests { targets.append(makeUITestTarget(name: name)) }
     
+    let schemes: [Scheme] = [.makeScheme(target: .dev, name: name)]
     let settings: Settings =
       .settings(base: Constants.baseSettings,
-                configurations: [.debug(name: .debug, xcconfig: XCConfig.xcconfig(.dev)),
-                                 .release(name: .release, xcconfig: XCConfig.xcconfig(.prod))],
+                configurations: [.debug(name: AppConfiguration.dev.configurationName, xcconfig: XCConfig.xcconfig(.dev)),
+                                 .release(name: AppConfiguration.prod.configurationName, xcconfig: XCConfig.xcconfig(.prod))],
                 defaultSettings: .recommended)
     
     return Project(name: name,
                    organizationName: Constants.organizationName,
                    packages: packages,
                    settings: settings,
-                   targets: targets
+                   targets: targets,
+                   schemes: schemes
     )
   }
   
@@ -85,10 +87,11 @@ public extension Project {
     if hasTests { targets.append(makeTestTarget(name: name)) }
     if hasUITests { targets.append(makeUITestTarget(name: name)) }
     
+    let schemes: [Scheme] = [.makeScheme(target: .dev, name: name)]
     let settings: Settings =
       .settings(base: Constants.baseSettings,
-                configurations: [.debug(name: .debug),
-                                 .release(name: .release)
+                configurations: [.debug(name: AppConfiguration.dev.configurationName),
+                                 .release(name: AppConfiguration.prod.configurationName)
                 ],
                 defaultSettings: .recommended)
     
@@ -96,7 +99,8 @@ public extension Project {
                    organizationName: Constants.organizationName,
                    packages: packages,
                    settings: settings,
-                   targets: targets
+                   targets: targets,
+                   schemes: schemes
     )
   }
   

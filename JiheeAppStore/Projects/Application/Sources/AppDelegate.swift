@@ -13,7 +13,7 @@ import UI
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    UIColor.registerPretendard()
+//    UIColor.registerPretendard()
     return true
   }
   

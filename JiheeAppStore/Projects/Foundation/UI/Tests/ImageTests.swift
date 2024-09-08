@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import UI
+import UI
 
 final class ImageTests: XCTestCase {
   

@@ -13,6 +13,9 @@ public enum Network:
 {
   
   case Model
+  case RepositoryImpl
+  case Service
+  case Storage
   
   public var name: String {
     "\(self)"
