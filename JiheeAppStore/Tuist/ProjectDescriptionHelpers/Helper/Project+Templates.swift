@@ -68,6 +68,7 @@ public extension Project {
                           infoPlist: InfoPlist = .default,
                           sources: SourceFilesList = ["Sources/**"],
                           resources: ResourceFileElements? = nil,
+                          coreDataModels: [ProjectDescription.CoreDataModel] = [],
                           hasTests: Bool = true,
                           hasUITests: Bool = false
   ) -> Project {
@@ -79,7 +80,8 @@ public extension Project {
                                    infoPlist: infoPlist,
                                    sources: sources,
                                    resources: resources,
-                                   dependencies: dependencies
+                                   dependencies: dependencies,
+                                   coreDataModels: coreDataModels
     )
     
     var targets: [Target] = [mainTarget]

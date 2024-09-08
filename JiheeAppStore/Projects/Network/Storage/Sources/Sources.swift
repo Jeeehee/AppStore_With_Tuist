@@ -1,8 +1,0 @@
-//
-//  Sources.swift
-//  AppFoundationManifests
-//
-//  Created by Jihee hwang on 9/8/24.
-//
-
-import Foundation

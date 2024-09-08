@@ -8,6 +8,7 @@
 import UIKit
 
 import UI
+import Storage
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 //    UIColor.registerPretendard()
     return true
+  }
+  
+  func applicationWillTerminate(_ application: UIApplication) {
+    CoreDataStack.shared.saveContext()
   }
   
   // MARK: UISceneSession Lifecycle

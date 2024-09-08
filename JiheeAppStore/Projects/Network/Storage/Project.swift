@@ -17,5 +17,6 @@ let project = Project.makeProject(
     .SPM.RxTest.dependency,
     .Module.type(.Foundation(.AppFoundation)).dependency,
     .Module.type(.Network(.Model)).dependency
-  ]
+  ],
+  coreDataModels: [.coreDataModel(Path.relativeToRoot("Projects/Network/Storage/Sources/Model.xcdatamodeld"))]
 )
