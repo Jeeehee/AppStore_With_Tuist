@@ -11,6 +11,8 @@ import UIKit
 import RxSwift
 import SnapKit
 
+import Logger
+
 open class BaseViewController:
   UIViewController,
   HasDisposeBag,
@@ -37,7 +39,7 @@ open class BaseViewController:
   }
   
   deinit {
-    // TODO: - Log
+    Logger.debug("Deinit \(self)")
   }
   
   // MARK: - View LifeCycle

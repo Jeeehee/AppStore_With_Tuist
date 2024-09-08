@@ -15,6 +15,7 @@ let project = Project.makeProject(
     .SPM.SnapKit.dependency,
     .SPM.RxSwift.dependency,
     .SPM.RxCocoa.dependency,
+    .Module.type(.Foundation(.Logger)).dependency
   ],
   hasTests: true
 )

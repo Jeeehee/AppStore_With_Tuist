@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Logger
+
 public extension UIFont {
   
   // MARK: - Common
@@ -22,7 +24,7 @@ public extension UIFont {
   
   // MARK: - Pretendard
   
-  enum Pretendard {
+  enum Pretendard: CaseIterable {
     case thin
     case light
     case regular
@@ -59,4 +61,25 @@ public extension UIFont {
   static func custom(_ font: Pretendard, _ size: CGFloat) -> UIFont {
     return UIFont(name: font.name, size: size) ?? .systemFont(ofSize: size, weight: font.type)
   }
+}
+
+// MARK: - Register
+
+extension UIFont {
+  
+  public func registerPretendard() {
+    Pretendard.allCases.forEach {
+      UIFont.registerFont(bundle: UIBundleIdentifier.bundle, fontName: $0.name)
+    }
+  }
+  
+  static func registerFont(bundle: Bundle, fontName: String) {
+    guard let url = bundle.url(forResource: fontName, withExtension: "otf") else {
+      assertionFailure()
+      Logger.error("NoFont \(fontName)")
+      return
+    }
+    CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+  }
+  
 }

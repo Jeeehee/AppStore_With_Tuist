@@ -11,6 +11,8 @@ import ProjectDescriptionHelpers
 let project = Project.makeProject(
   name: Modules.Foundation(.Logger).name,
   product: .framework,
-  dependencies: [],
+  dependencies: [
+    .SPM.RxSwift.dependency
+  ],
   hasTests: false
 )
