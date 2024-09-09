@@ -41,7 +41,7 @@ final class MockURLSession: URLSessionProtocol {
   }
   
   public func data(for request: URLRequest, delegate: (any URLSessionTaskDelegate)?) async throws -> (Data, URLResponse) {
-    return try await withCheckedThrowingContinuation { continuation in
+    try await withCheckedThrowingContinuation { continuation in
       dataTask = MockURLSessionDataTask {
         switch self.response {
         case let (data?, urlResponse?, nil):

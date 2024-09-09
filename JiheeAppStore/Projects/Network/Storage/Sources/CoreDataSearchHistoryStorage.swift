@@ -1,5 +1,5 @@
 //
-//  Storage.swift
+//  CoreDataSearchHistoryStorage.swift
 //  Storage
 //
 //  Created by Jihee hwang on 9/9/24.
@@ -8,8 +8,10 @@
 
 import Foundation
 
-public protocol Storage {
+import Entities
+
+public protocol CoreDataSearchHistoryStorage {
   func createData(keyword: String)
-  func readRecentSearcheKeywords(limit: Int) -> [SearchKeyword]
+  func readSearchHistory(limit: Int) async -> [SearchHistory]
   func deleteAll()
 }

@@ -13,37 +13,61 @@ public struct SearchResult: Decodable, Equatable {
 }
 
 public struct AppInfo: Decodable, Equatable {
+  let artworkUrl512: String
   let screenshotUrls: [String]
-  let artworkUrl60, artworkUrl512, artworkUrl100: String
+  let ipadScreenshotUrls, appletvScreenshotUrls: [String]
+  let isGameCenterEnabled: Bool
   let supportedDevices: [String]
-  let features: [String]
-  let kind: String
-  let averageUserRating: Double
-  let formattedPrice, minimumOSVersion, trackCensoredName: String
-  let contentAdvisoryRating: String
-  let currentVersionReleaseDate: String
-  let releaseNotes: String?
-  let resultDescription: String
-  let releaseDate: String
-  let bundleID: String
-  let trackName: String
-  let artistID: Int
-  let artistName: String
+  let advisories, features: [String]
+  let artistViewURL: String
+  let artworkUrl60, artworkUrl100: String
+  let kind, minimumOSVersion: String
+  let averageUserRatingForCurrentVersion: Double
+  let languageCodesISO2A: [String]
+  let fileSizeBytes: String
+  let sellerURL: String
+  let formattedPrice: String
+  let userRatingCountForCurrentVersion: Int
+  let trackContentRating: String
+  let currentVersionReleaseDate: Date
+  let releaseNotes, artistName: String
+  let genres: [String]
   let price: Int
+  let description: String
+  let genreIDS: [String]
+  let primaryGenreName: String
+  let primaryGenreID: Int
+  let bundleID, sellerName: String
+  let trackID: Int
+  let trackName, currency: String
+  let isVppDeviceBasedLicensingEnabled: Bool
+  let releaseDate: Date
+  let averageUserRating: Double
+  let trackCensoredName: String
+  let trackViewURL: String
+  let contentAdvisoryRating: String
+  let artistID: Int
   let version, wrapperType: String
   let userRatingCount: Int
   
   enum CodingKeys: String, CodingKey {
-    case screenshotUrls, artworkUrl60, artworkUrl512, artworkUrl100
-    case supportedDevices, features, kind, averageUserRating, formattedPrice
+    case artworkUrl512, screenshotUrls, ipadScreenshotUrls, appletvScreenshotUrls, isGameCenterEnabled, supportedDevices, advisories, features
+    case artistViewURL = "artistViewUrl"
+    case artworkUrl60, artworkUrl100, kind
     case minimumOSVersion = "minimumOsVersion"
-    case trackCensoredName, contentAdvisoryRating
-    case currentVersionReleaseDate, releaseNotes
-    case resultDescription = "description"
-    case releaseDate
+    case averageUserRatingForCurrentVersion, languageCodesISO2A, fileSizeBytes
+    case sellerURL = "sellerUrl"
+    case formattedPrice, userRatingCountForCurrentVersion, trackContentRating, currentVersionReleaseDate, releaseNotes, artistName, genres, price, description
+    case genreIDS = "genreIds"
+    case primaryGenreName
+    case primaryGenreID = "primaryGenreId"
     case bundleID = "bundleId"
-    case trackName
+    case sellerName
+    case trackID = "trackId"
+    case trackName, currency, isVppDeviceBasedLicensingEnabled, releaseDate, averageUserRating, trackCensoredName
+    case trackViewURL = "trackViewUrl"
+    case contentAdvisoryRating
     case artistID = "artistId"
-    case artistName, price, version, wrapperType, userRatingCount
+    case version, wrapperType, userRatingCount
   }
 }

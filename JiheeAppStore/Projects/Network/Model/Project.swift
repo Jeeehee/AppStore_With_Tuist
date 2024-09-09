@@ -11,6 +11,8 @@ import ProjectDescriptionHelpers
 let project = Project.makeProject(
   name: Modules.Network(.Model).name,
   product: .framework,
-  dependencies: [],
+  dependencies: [
+    .Module.type(.Domain(.Entities)).dependency
+  ],
   hasTests: false
 )

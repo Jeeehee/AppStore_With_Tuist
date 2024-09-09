@@ -19,7 +19,7 @@ public enum NetworkError: Error {
   case failedDataMapping
   case unknownError(URLResponse?)
   
-  public var errorDescription: String? {
+  public var errorDescription: String {
     switch self {
     case .invalidURL(let urlString):
       return "Invalid URL \(String(describing: urlString))"
@@ -32,11 +32,11 @@ public enum NetworkError: Error {
     case .invalidRequest:
       return "Invalid request."
     case .decodeError:
-      return "Fail to decode."
+      return "Failed to decode."
     case .encodeError:
-      return "Fail to encode."
+      return "Failed to encode."
     case .failedDataMapping:
-      return "Fail to Data Mapping."
+      return "Failed to Data Mapping."
     case .unknownError(let response):
       return "Unknown Error from \(String(describing: response))"
     }

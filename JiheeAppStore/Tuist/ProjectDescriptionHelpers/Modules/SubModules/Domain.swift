@@ -13,6 +13,9 @@ public enum Domain:
 {
   
   case Entities
+  case Repository
+  case Usecase
+  case UsecaseImpl
   
   public var name: String {
     "\(self)"

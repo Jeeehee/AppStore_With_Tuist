@@ -21,7 +21,7 @@ open class BaseView:
   
   private(set) var didSetupConstrints: Bool = false
   
-  // MARK: - initialize & deinitialize
+  // MARK: - Initialization & deinitialization
   
   public override init(frame: CGRect) {
     super.init(frame: frame)

@@ -19,6 +19,9 @@ let project = Project.makeProject(
     .SPM.RxTest.dependency,
     .Module.type(.Foundation(.AppFoundation)).dependency,
     .Module.type(.Network(.Model)).dependency,
-    .Module.type(.Network(.Service)).dependency
+    .Module.type(.Network(.Service)).dependency,
+    .Module.type(.Network(.Storage)).dependency,
+    .Module.type(.Domain(.Entities)).dependency,
+    .Module.type(.Domain(.Repository)).dependency
   ]
 )

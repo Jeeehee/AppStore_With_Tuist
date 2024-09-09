@@ -12,7 +12,7 @@ public final class NetworkAdapterImpl: NetworkAdapter {
   
   private let session: URLSessionProtocol
   
-  // MARK: - Initialize
+  // MARK: - Initialization
   
   public init(session: URLSessionProtocol = URLSession.shared) {
     self.session = session

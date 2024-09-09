@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func applicationWillTerminate(_ application: UIApplication) {
-    CoreDataStack.shared.saveContext()
+    CoreDataStorage.shared.saveContext()
   }
   
   // MARK: UISceneSession Lifecycle

@@ -26,7 +26,7 @@ open class BaseViewController:
   
   private(set) var didSetupConstrints: Bool = false
   
-  // MARK: - initialize & deinitialize
+  // MARK: - Initialization & deinitialization
   
   public init() {
     super.init(nibName: nil, bundle: nil)

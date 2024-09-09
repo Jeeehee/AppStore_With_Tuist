@@ -1,5 +1,5 @@
 //
-//  CoreDataStack.swift
+//  CoreDataStorage.swift
 //  AppFoundationManifests
 //
 //  Created by Jihee hwang on 9/8/24.
@@ -9,20 +9,20 @@ import CoreData
 
 import Logger
 
-public class CoreDataStack {
+public class CoreDataStorage: CoreDataStorageProtocol {
   
   // MARK: - Shared
   
-  public static let shared = CoreDataStack()
+  public static let shared = CoreDataStorage()
   
   // MARK: - Properties
   
-  public lazy var persistentContainer: NSPersistentContainer = {
+  private lazy var persistentContainer: NSPersistentContainer = {
     guard let modelBundle = Bundle(identifier: "com.JiheeAppStore.Storage"),
           let url = modelBundle.url(forResource: "Model", withExtension: "momd"),
           let model = NSManagedObjectModel(contentsOf: url)
     else {
-      let errorMessage = "Failed to locate Core Data model"
+      let errorMessage = CoreDataStorageError.failedLocateCoreDataModel.errorDescription
       Logger.error(errorMessage)
       fatalError(errorMessage)
     }
@@ -30,7 +30,9 @@ public class CoreDataStack {
     let container = NSPersistentContainer(name: "SearchKeyword", managedObjectModel: model)
     container.loadPersistentStores { (storeDescription, error) in
       if let error = error as NSError? {
-        fatalError("Unresolved error \(error), \(error.userInfo)")
+        let errorMessage = CoreDataStorageError.failedLoadPersistentStore(error).errorDescription
+        Logger.error(errorMessage)
+        assertionFailure(errorMessage)
       }
     }
     return container
@@ -40,15 +42,22 @@ public class CoreDataStack {
     return persistentContainer.viewContext
   }
   
+  // MARK: - Function
+  
   public func saveContext() {
     let context = persistentContainer.viewContext
     if context.hasChanges {
       do {
         try context.save()
       } catch {
-        let nserror = error as NSError
-        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        let errorMessage = CoreDataStorageError.failedSaveContext(error as NSError).errorDescription
+        Logger.error(errorMessage)
+        assertionFailure(errorMessage)
       }
     }
+  }
+  
+  public func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
+    persistentContainer.performBackgroundTask(block)
   }
 }
