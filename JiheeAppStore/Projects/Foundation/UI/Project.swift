@@ -17,5 +17,6 @@ let project = Project.makeProject(
     .SPM.RxCocoa.dependency,
     .Module.type(.Foundation(.Logger)).dependency
   ],
+  resources: ["Resources/**"],
   hasTests: true
 )

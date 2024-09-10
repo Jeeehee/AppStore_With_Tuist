@@ -15,7 +15,8 @@ let project = Project.makeProject(
     .SPM.RIBs.dependency,
     .SPM.RxSwift.dependency,
     .SPM.RxCocoa.dependency,
-    .SPM.RxGesture.dependency
+    .SPM.RxGesture.dependency,
+    .SPM.SnapKit.dependency
   ],
   hasTests: false
 )

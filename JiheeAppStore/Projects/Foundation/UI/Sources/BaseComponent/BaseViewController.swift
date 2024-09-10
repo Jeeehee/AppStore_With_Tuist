@@ -24,8 +24,6 @@ open class BaseViewController:
   public var disposeBag: DisposeBag = DisposeBag()
   public var bottomConstraint: Constraint? = nil
   
-  private(set) var didSetupConstrints: Bool = false
-  
   // MARK: - Initialization & deinitialization
   
   public init() {
@@ -49,6 +47,7 @@ open class BaseViewController:
     navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     view.setNeedsUpdateConstraints()
     navigationController?.navigationBar.isHidden = true
+    view.backgroundColor = .white
   }
   
   open override func viewWillAppear(_ animated: Bool) {
@@ -66,23 +65,8 @@ open class BaseViewController:
 
 extension BaseViewController {
   
-  open override func updateViewConstraints() {
-    setupUIIfNeeded()
-    super.updateViewConstraints()
-  }
-  
   open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)
-  }
-  
-  func setupUI() {
-    // override
-  }
-  
-  private func setupUIIfNeeded() {
-    guard !didSetupConstrints else { return }
-    setupUI()
-    didSetupConstrints = true
   }
   
 }

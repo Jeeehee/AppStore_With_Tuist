@@ -11,20 +11,20 @@ public extension UIColor {
   
   // MARK: - Common
   
-  static let kakaoBankYellow   = UIColor.init(red: 251, green: 228, blue: 76, alpha: 0)
-  static let line              = grayscale(color: 223)
-  static let text              = grayscale(color: 10)
+  static let kakaoBankYellow: UIColor  = .init(resource: .kakaoBankYellow)
+  static let line: UIColor             = .init(resource: .line)
+  static let text: UIColor             = .init(resource: .text)
   
   // MARK: - Grayscale
   
-  static let black20           = grayscale(color: 243)
-  static let black30           = grayscale(color: 226)
-  static let black40           = grayscale(color: 190)
-  static let black50           = grayscale(color: 168)
-  static let black60           = grayscale(color: 128)
-  static let black70           = grayscale(color: 109)
-  static let black80           = grayscale(color: 77)
-  static let black90           = grayscale(color: 38)
+  static let black20: UIColor          = .init(resource: .black20)
+  static let black30: UIColor          = .init(resource: .black30)
+  static let black40: UIColor          = .init(resource: .black40)
+  static let black50: UIColor          = .init(resource: .black50)
+  static let black60: UIColor          = .init(resource: .black60)
+  static let black70: UIColor          = .init(resource: .black70)
+  static let black80: UIColor          = .init(resource: .black80)
+  static let black90: UIColor          = .init(resource: .black90)
   
 }
 

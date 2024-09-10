@@ -9,6 +9,8 @@ import UIKit
 
 import RIBs
 
+import SnapKit
+
 // MARK: - NavigateViewControllable
 
 public final class NavigationViewControllable: ViewControllable  {
@@ -38,8 +40,8 @@ public extension ViewControllable {
   
   func presentFullScreen(
     _ viewControllable: ViewControllable,
-    animated: Bool,
-    completion: (() -> Void)?
+    animated: Bool = true,
+    completion: (() -> Void)? = nil
   ) {
     DispatchQueue.main.async { [weak self] in
       viewControllable.uiviewController.modalPresentationStyle = .fullScreen
@@ -95,4 +97,20 @@ public extension ViewControllable {
     navigation.popToRootViewController(animated: animated)
   }
   
+}
+
+// MARK: - Add Child
+
+public extension ViewControllable {
+  func addChildViewController(container: UIView, child: ViewControllable) {
+    let childViewController = child.uiviewController
+    
+    uiviewController.addChild(child.uiviewController)
+    container.addSubview(childViewController.view)
+    
+    childViewController.view.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
+    childViewController.didMove(toParent: self.uiviewController)
+  }
 }

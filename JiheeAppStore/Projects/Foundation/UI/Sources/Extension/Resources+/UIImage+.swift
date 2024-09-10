@@ -9,28 +9,14 @@ import UIKit
 
 import Logger
 
-public extension UIImage {
+extension UIImage {
 
   // MARK: - Image
   
-  static let splash     = imageAsset("splash")
+  public static let splash: UIImage    = .init(resource: .splash)
   
   // MARK: - Icon
   
-  static let favorite   = imageAsset("favorite")
-  static let search     = imageAsset("search")
-  
-}
-
-// MARK: - Extension
-
-private extension UIImage {
-  static func imageAsset(_ name: String) -> UIImage {
-    guard let image = UIImage(named: name) else {
-      Logger.debug("NoImage \(name)")
-      return UIImage()
-    }
-    
-    return image
-  }
+  public static let favorite: UIImage  = .init(resource: .favorite)
+  public static let search: UIImage    = .init(resource: .search)
 }
