@@ -14,4 +14,5 @@ import Entities
 
 public protocol SearchHistoryRepository {
   func fetchRecentSearchHistory() -> Single<[SearchHistory]>
+  func saveSearchKeyword(_ keyword: String)
 }

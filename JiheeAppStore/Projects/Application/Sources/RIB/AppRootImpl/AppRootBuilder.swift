@@ -8,8 +8,10 @@
 
 import RIBs
 
+import Home
+
 protocol AppRootDependency: Dependency {
-  
+  var homeBuilder: HomeBuildable { get }
 }
 
 final class AppRootComponent: Component<AppRootDependency> {
@@ -29,12 +31,12 @@ final class AppRootBuilder:
   
   func build() -> LaunchRouting {
     let viewController = AppRootViewController()
-    let _ = AppRootComponent(dependency: dependency)
     let interactor = AppRootInteractor(presenter: viewController)
     
     return AppRootRouter(
       interactor: interactor,
-      viewController: viewController
+      viewController: viewController,
+      homeBuilder: dependency.homeBuilder
     )
   }
 }

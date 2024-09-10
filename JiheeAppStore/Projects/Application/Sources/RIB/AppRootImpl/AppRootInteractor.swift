@@ -13,10 +13,16 @@ protocol AppRootPresentable: Presentable {
   var listener: AppRootPresentableListener? { get set }
 }
 
-final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRootInteractable, AppRootPresentableListener {
+final class AppRootInteractor:
+  PresentableInteractor<AppRootPresentable>,
+  AppRootInteractable,
+  AppRootPresentableListener
+{
   
   weak var router: AppRootRouting?
   weak var listener: AppRootListener?
+  
+  // MARK: - Initialization
   
   override init(presenter: AppRootPresentable) {
     super.init(presenter: presenter)
@@ -25,9 +31,21 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
   
   override func didBecomeActive() {
     super.didBecomeActive()
+    
+    attachHome()
   }
   
   override func willResignActive() {
     super.willResignActive()
+  }
+  
+  // MARK: - AppRootRouting
+  
+  func attachHome() {
+    router?.attachHome()
+  }
+  
+  func detachHome() {
+    router?.detachHome()
   }
 }

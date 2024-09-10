@@ -14,11 +14,11 @@ import Usecase
 import Entities
 import Repository
 
-final class AppStoreUsecaseImpl: AppStoreUsecase {
+public final class AppStoreUsecaseImpl: AppStoreUsecase {
   private let appSearchRepository: AppSearchRepository
   private let searchHistoryRepository: SearchHistoryRepository
   
-  init(
+  public init(
     appSearchRepository: AppSearchRepository,
     searchHistoryRepository: SearchHistoryRepository
   ) {
@@ -30,7 +30,7 @@ final class AppStoreUsecaseImpl: AppStoreUsecase {
 // MARK: - AppSearchRepository
 
 extension AppStoreUsecaseImpl {
-  func search<T: Decodable>(_ type: T.Type, with: URLRequest) -> Single<T> {
+  public func search<T: Decodable>(_ type: T.Type, with: URLRequest) -> Single<T> {
     Single<T>.create { [weak self] observer in
       guard let self else { return Disposables.create() }
       
@@ -44,7 +44,7 @@ extension AppStoreUsecaseImpl {
 // MARK: - SearchHistoryRepository
 
 extension AppStoreUsecaseImpl {
-  func fetchRecentSearchHistory() -> Single<[SearchHistory]> {
+  public func fetchRecentSearchHistory() -> Single<[SearchHistory]> {
     Single<[SearchHistory]>.create { [weak self] observer in
       guard let self else { return Disposables.create() }
       
@@ -52,5 +52,9 @@ extension AppStoreUsecaseImpl {
         .fetchRecentSearchHistory()
         .subscribe { observer($0) }
     }
+  }
+  
+  public func saveSearchKeyword(_ keyword: String) {
+    searchHistoryRepository.saveSearchKeyword(keyword)
   }
 }

@@ -17,7 +17,8 @@ public protocol AppRootBuildable: Buildable {
 // MARK: - AppRootRouting
 
 public protocol AppRootRouting: ViewableRouting {
-  
+  func attachHome()
+  func detachHome()
 }
 
 // MARK: - AppRootListener

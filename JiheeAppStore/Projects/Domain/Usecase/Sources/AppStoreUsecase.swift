@@ -15,4 +15,5 @@ import Entities
 public protocol AppStoreUsecase {
   func search<T: Decodable>(_ type: T.Type, with: URLRequest) -> Single<T>
   func fetchRecentSearchHistory() -> Single<[SearchHistory]>
+  func saveSearchKeyword(_ keyword: String)
 }
