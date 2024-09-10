@@ -14,16 +14,11 @@ import Entities
 import Repository
 
 public final class AppSearchRepositoryImpl: AppSearchRepository {
-  private let appSearchRepository: AppSearchRepository
   private let session: NetworkAdapter
   
   // MARK: - Initialization
   
-  public init(
-    appSearchRepository: AppSearchRepository,
-    session: NetworkAdapter
-  ) {
-    self.appSearchRepository = appSearchRepository
+  public init(session: NetworkAdapter) {
     self.session = session
   }
   

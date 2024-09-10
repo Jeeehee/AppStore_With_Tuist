@@ -25,11 +25,10 @@ public struct AppInfo: Decodable, Equatable {
   let averageUserRatingForCurrentVersion: Double
   let languageCodesISO2A: [String]
   let fileSizeBytes: String
-  let sellerURL: String
   let formattedPrice: String
   let userRatingCountForCurrentVersion: Int
   let trackContentRating: String
-  let currentVersionReleaseDate: Date
+  let currentVersionReleaseDate: String
   let releaseNotes, artistName: String
   let genres: [String]
   let price: Int
@@ -41,7 +40,7 @@ public struct AppInfo: Decodable, Equatable {
   let trackID: Int
   let trackName, currency: String
   let isVppDeviceBasedLicensingEnabled: Bool
-  let releaseDate: Date
+  let releaseDate: String
   let averageUserRating: Double
   let trackCensoredName: String
   let trackViewURL: String
@@ -56,7 +55,6 @@ public struct AppInfo: Decodable, Equatable {
     case artworkUrl60, artworkUrl100, kind
     case minimumOSVersion = "minimumOsVersion"
     case averageUserRatingForCurrentVersion, languageCodesISO2A, fileSizeBytes
-    case sellerURL = "sellerUrl"
     case formattedPrice, userRatingCountForCurrentVersion, trackContentRating, currentVersionReleaseDate, releaseNotes, artistName, genres, price, description
     case genreIDS = "genreIds"
     case primaryGenreName

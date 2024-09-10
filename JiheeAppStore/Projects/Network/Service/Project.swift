@@ -13,8 +13,6 @@ let project = Project.makeProject(
   product: .framework,
   dependencies: [
     .SPM.RxSwift.dependency,
-    .SPM.RxCocoa.dependency,
-    .SPM.RxTest.dependency,
     .Module.type(.Foundation(.AppFoundation)).dependency,
     .Module.type(.Network(.Model)).dependency
   ],

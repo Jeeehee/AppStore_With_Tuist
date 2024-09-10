@@ -15,16 +15,11 @@ import Entities
 import Repository
 
 public final class SearchHistoryRepositoryImpl: SearchHistoryRepository {
-  private let searchHistoryRepository: SearchHistoryRepository
   private let storage: CoreDataSearchHistoryStorage
   
   // MARK: - Initialization
   
-  public init(
-    searchHistoryRepository: SearchHistoryRepository,
-    storage: CoreDataSearchHistoryStorage
-  ) {
-    self.searchHistoryRepository = searchHistoryRepository
+  public init(storage: CoreDataSearchHistoryStorage) {
     self.storage = storage
   }
   
@@ -41,5 +36,9 @@ public final class SearchHistoryRepositoryImpl: SearchHistoryRepository {
       
       return Disposables.create()
     }
+  }
+  
+  public func saveSearchKeyword(_ keyword: String) {
+    storage.createData(keyword: keyword)
   }
 }

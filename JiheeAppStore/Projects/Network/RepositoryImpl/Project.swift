@@ -16,7 +16,6 @@ let project = Project.makeProject(
   dependencies: [
     .SPM.RxSwift.dependency,
     .SPM.RxCocoa.dependency,
-    .SPM.RxTest.dependency,
     .Module.type(.Foundation(.AppFoundation)).dependency,
     .Module.type(.Network(.Model)).dependency,
     .Module.type(.Network(.Service)).dependency,

@@ -42,7 +42,8 @@ public extension Project {
     if hasTests { targets.append(makeTestTarget(name: name)) }
     if hasUITests { targets.append(makeUITestTarget(name: name)) }
     
-    let schemes: [Scheme] = [.makeScheme(target: .dev, name: name)]
+    let schemes: [Scheme] = [.makeScheme(target: .dev, name: name),
+                             .makeScheme(target: .prod, name: name)]
     let settings: Settings =
       .settings(base: Constants.baseSettings,
                 configurations: [.debug(name: AppConfiguration.dev.configurationName, xcconfig: XCConfig.xcconfig(.dev)),
@@ -114,7 +115,8 @@ public extension Project {
                   infoPlist: .default,
                   sources: ["Tests/**"],
                   dependencies: [
-                    .target(name: name)
+                    .target(name: name),
+                    .xctest
                   ]
     )
   }
@@ -127,7 +129,8 @@ public extension Project {
                   infoPlist: .default,
                   sources: ["UITests/**"],
                   dependencies: [
-                    .target(name: name)
+                    .target(name: name),
+                    .xctest
                   ]
     )
   }
@@ -141,8 +144,9 @@ private extension Scheme {
            buildAction: .buildAction(targets: ["\(name)"]),
            testAction: .targets(["\(name)Tests"],
                                 arguments: nil,
-                                configuration: target.configurationName,
-                                options: .options(coverage: true)),
+                                configuration: AppConfiguration.dev.configurationName,
+                                options: .options(coverage: true,
+                                                  codeCoverageTargets: ["\(name)"])),
            runAction: .runAction(configuration: target.configurationName),
            archiveAction: .archiveAction(configuration: target.configurationName),
            profileAction: .profileAction(configuration: target.configurationName),

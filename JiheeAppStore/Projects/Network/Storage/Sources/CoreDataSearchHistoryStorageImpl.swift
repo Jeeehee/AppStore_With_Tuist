@@ -12,7 +12,6 @@ import Logger
 import Entities
 
 public class CoreDataSearchHistoryStorageImpl {
-  //  private let context: NSManagedObjectContext
   private let coreDataStorage: CoreDataStorage
   
   public init(coreDataStorage: CoreDataStorage = CoreDataStorage.shared) {

@@ -12,11 +12,9 @@ public extension TargetDependency {
     case RxSwift
     case RxCocoa
     case RxRelay
-    case RxTest
     case RxGesture
     case RIBs
     case SnapKit
-    case Alamofire
     
     public var dependency: TargetDependency {
       .package(product: rawValue)

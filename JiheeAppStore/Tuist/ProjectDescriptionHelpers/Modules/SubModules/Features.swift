@@ -12,7 +12,9 @@ public enum Features:
   ModuleInterface
 {
   
-  case Search
+  case Home
+  case AppSearchResult
+  case AppDetail
   
   public var name: String {
     "\(self)"
