@@ -52,6 +52,7 @@ final class RecentSearchHistoryViewController:
     .builder
     .with {
       $0.backgroundColor = .clear
+      $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
       RecentKeywordCollectionViewCell.register($0)
     }
     .build()
@@ -92,6 +93,9 @@ extension RecentSearchHistoryViewController {
           cell.fetchData(recentKeyword: item.keyword)
         }
         .disposed(by: disposeBag)
+    
+    recentKeywordCollectionView.layoutIfNeeded()
+    recentKeywordCollectionView.collectionViewLayout.invalidateLayout()
   }
 }
 
