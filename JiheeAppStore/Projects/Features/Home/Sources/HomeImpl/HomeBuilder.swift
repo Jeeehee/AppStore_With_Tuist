@@ -9,14 +9,17 @@
 import RIBs
 
 import Usecase
+import Entities
+
+import AppDetail
 
 final class HomeComponent: Component<HomeDependency> {
-  fileprivate var searchBarBuilder: SearchBarBuildable {
-    dependency.searchBarBuilder
-  }
-  
   fileprivate var recentSearchHistoryBuilder: RecentSearchHistoryBuildable {
     dependency.recentSearchHistoryBuilder
+  }
+  
+  fileprivate var appDetailBuilder: AppDetailBuildable {
+    dependency.appDetailBuilder
   }
   
   fileprivate var appStoreUsecase: AppStoreUsecase {
@@ -25,6 +28,10 @@ final class HomeComponent: Component<HomeDependency> {
   
   fileprivate var searchHistoryModelStream: SearchHistoryModelStream {
     dependency.searchHistoryModelStream
+  }
+  
+  fileprivate var appSearchModelStream: AppSearchModelStream {
+    dependency.appSearchModelStream
   }
 }
 
@@ -44,14 +51,16 @@ public final class HomeBuilder:
     let interactor = HomeInteractor(
       presenter: viewController,
       appStoreUsecase: dependency.appStoreUsecase,
-      searchHistoryModelStream: dependency.searchHistoryModelStream
+      searchHistoryModelStream: dependency.searchHistoryModelStream,
+      appSearchModelStream: dependency.appSearchModelStream
     )
     interactor.listener = listener
+    
     return HomeRouter(
       interactor: interactor,
       viewController: viewController,
-      searchBarBuilder: component.searchBarBuilder,
-      recentSearchHistoryBuilder: component.recentSearchHistoryBuilder
+      recentSearchHistoryBuilder: component.recentSearchHistoryBuilder,
+      appDetailBuilder: component.appDetailBuilder
     )
   }
 }

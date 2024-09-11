@@ -18,6 +18,7 @@ let project = Project.makeProject(
     .SPM.RxRelay.dependency,
     .SPM.RxGesture.dependency,
     .SPM.SnapKit.dependency,
+    .SPM.Kingfisher.dependency,
     .Module.type(.Domain(.Entities)).dependency,
     .Module.type(.Domain(.Usecase)).dependency,
     .Module.type(.Network(.Model)).dependency,
@@ -25,6 +26,7 @@ let project = Project.makeProject(
     .Module.type(.Foundation(.AppFoundation)).dependency,
     .Module.type(.Foundation(.Logger)).dependency,
     .Module.type(.Foundation(.UI)).dependency,
+    .Module.type(.Features(.AppSearchResult)).dependency
   ],
   hasTests: false
 )

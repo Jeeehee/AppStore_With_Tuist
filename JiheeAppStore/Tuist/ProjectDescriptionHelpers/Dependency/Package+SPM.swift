@@ -15,6 +15,7 @@ public extension Package {
     case RxGesture
     case RIBs
     case SnapKit
+    case Kingfisher
     
     public var dependency: Package {
       switch self {
@@ -26,6 +27,8 @@ public extension Package {
         return .package(url: "https://github.com/uber/RIBs.git", .exact("0.15.1"))
       case .SnapKit:
          return .package(url: "https://github.com/SnapKit/SnapKit.git", .exact("5.6.0"))
+      case .Kingfisher:
+        return .package(url: "https://github.com/onevcat/Kingfisher", .exact("7.12.0"))
       }
     }
     

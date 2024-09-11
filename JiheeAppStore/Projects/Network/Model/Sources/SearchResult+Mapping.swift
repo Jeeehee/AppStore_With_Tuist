@@ -14,6 +14,7 @@ public extension AppInfo {
   func toAppInfoSummary() -> AppInfoSummary {
     .init(
       artworkUrl100: artworkUrl100,
+      trackName: trackName,
       screenshotUrls: screenshotUrls,
       trackId: trackID,
       genres: genres,

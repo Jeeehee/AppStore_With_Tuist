@@ -10,12 +10,14 @@ import RIBs
 
 import AppFoundation
 
+import AppDetail
+
 // MARK: - HomeInteractable
 
 protocol HomeInteractable:
   Interactable,
-  SearchBarListener,
-  RecentSearchHistoryListener
+  RecentSearchHistoryListener,
+  AppDetailListener
 {
   var router: HomeRouting? { get set }
   var listener: HomeListener? { get set }
@@ -24,7 +26,6 @@ protocol HomeInteractable:
 // MARK: - HomeViewControllable
 
 protocol HomeViewControllable: ViewControllable {
-  func addSearchBarView(_ view: ViewControllable)
   func addRecentSearchHistoryView(_ view: ViewControllable)
 }
 
@@ -33,23 +34,23 @@ final class HomeRouter:
   HomeRouting
 {
   // MARK: - Properties
-  
-  private var searchBarBuilder: SearchBarBuildable
-  private var searchBarRouter: SearchBarRouting?
-  
+
   private var recentSearchHistoryBuilder: RecentSearchHistoryBuildable
   private var recentSearchHistoryRouter: RecentSearchHistoryRouting?
+  
+  private var appDetailBuilder: AppDetailBuildable
+  private var appDetailRouter: AppDetailRouting?
   
   // MARK: - Initialization
   
   init(
     interactor: HomeInteractable,
     viewController: HomeViewControllable,
-    searchBarBuilder: SearchBarBuildable,
-    recentSearchHistoryBuilder: RecentSearchHistoryBuildable
+    recentSearchHistoryBuilder: RecentSearchHistoryBuildable,
+    appDetailBuilder: AppDetailBuildable
   ) {
-    self.searchBarBuilder = searchBarBuilder
     self.recentSearchHistoryBuilder = recentSearchHistoryBuilder
+    self.appDetailBuilder = appDetailBuilder
     
     super.init(
       interactor: interactor,
@@ -61,25 +62,13 @@ final class HomeRouter:
   
   override func didLoad() {
     super.didLoad()
-    attachSearchBar()
-    attachRecentSearchHistory()
+    
+    attachRecentSearchHistoryRIB()
   }
   
   // MARK: - HomeRouting
   
-  func attachSearchBar() {
-    guard searchBarRouter == nil else { return }
-    
-    let router = searchBarBuilder
-      .build(withListener: interactor)
-    searchBarRouter = router
-    attachChild(router)
-    
-    let navigationController = NavigationViewControllable(root: router.viewControllable)
-    viewController.addSearchBarView(navigationController)
-  }
-  
-  func attachRecentSearchHistory() {
+  func attachRecentSearchHistoryRIB() {
     guard recentSearchHistoryRouter == nil else { return }
     
     let router = recentSearchHistoryBuilder
@@ -88,4 +77,23 @@ final class HomeRouter:
     attachChild(router)
     viewController.addRecentSearchHistoryView(router.viewControllable)
   }
+
+  func attachAppDetailRIB() {
+    guard appDetailRouter == nil else { return }
+    
+    let router = appDetailBuilder
+      .build(withListener: interactor)
+    
+    appDetailRouter = router
+    attachChild(router)
+    viewController.pushViewController(router.viewControllable)
+  }
+  
+  func detachAppDetailRIB() {
+    guard let router = appDetailRouter else { return }
+    appDetailRouter = nil
+    detachChild(router)
+    viewController.popToRoot(animated: false)
+  }
+
 }

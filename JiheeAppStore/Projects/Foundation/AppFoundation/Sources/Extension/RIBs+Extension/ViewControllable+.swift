@@ -19,9 +19,8 @@ public final class NavigationViewControllable: ViewControllable  {
   
   public init(root: ViewControllable) {
     let navigation = UINavigationController(rootViewController: root.uiviewController)
-    navigation.navigationBar.isTranslucent = false
     navigation.navigationBar.backgroundColor = .white
-    navigation.navigationBar.scrollEdgeAppearance = navigation.navigationBar.standardAppearance
+    navigation.navigationBar.tintColor = .darkGray
     
     self.navigationController = navigation
   }
@@ -60,7 +59,7 @@ public extension ViewControllable {
   
   func pushViewController(
     _ viewControllable: ViewControllable,
-    animated: Bool
+    animated: Bool = true
   ) {
     guard let navigation = uiviewController as? UINavigationController else {
       uiviewController.navigationController?.pushViewController(viewControllable.uiviewController, animated: animated)
@@ -71,8 +70,8 @@ public extension ViewControllable {
   }
   
   func popViewController(
-    animated: Bool,
-    completion: (() -> Void)?
+    animated: Bool = false,
+    completion: (() -> Void)? = nil
   ) {
     guard let navigation = uiviewController as? UINavigationController else {
       CATransaction.begin()

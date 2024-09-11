@@ -9,6 +9,8 @@
 import RIBs
 
 import Usecase
+import Entities
+import AppDetail
 
 // MARK: - HomeBuildable
 
@@ -19,7 +21,8 @@ public protocol HomeBuildable: Buildable {
 // MARK: - HomeRouting
 
 public protocol HomeRouting: ViewableRouting {
-
+  func attachAppDetailRIB()
+  func detachAppDetailRIB()
 }
 
 // MARK: - HomeListener
@@ -31,8 +34,9 @@ public protocol HomeListener: AnyObject {
 // MARK: - HomeDependency
 
 public protocol HomeDependency: Dependency {
-  var searchBarBuilder: SearchBarBuildable { get }
   var recentSearchHistoryBuilder: RecentSearchHistoryBuildable { get }
+  var appDetailBuilder: AppDetailBuildable { get }
   var appStoreUsecase: AppStoreUsecase { get }
   var searchHistoryModelStream: SearchHistoryModelStream { get }
+  var appSearchModelStream: AppSearchModelStream { get }
 }

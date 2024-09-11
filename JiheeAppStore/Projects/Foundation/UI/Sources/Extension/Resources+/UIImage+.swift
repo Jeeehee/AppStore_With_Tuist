@@ -19,4 +19,5 @@ extension UIImage {
   
   public static let favorite: UIImage  = .init(resource: .favorite)
   public static let search: UIImage    = .init(resource: .search)
+  public static let arrowLeft: UIImage    = .init(resource: .arrowLeft)
 }

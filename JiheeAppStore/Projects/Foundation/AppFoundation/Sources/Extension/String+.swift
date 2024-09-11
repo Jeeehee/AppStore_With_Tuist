@@ -33,4 +33,14 @@ public extension String {
     return ceil(boundingBox.width)
   }
   
+  static func numberFormatting(number: Int) -> String {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .decimal
+    
+    guard let formmattingNumber = numberFormatter.string(from: NSNumber(value: number)) else {
+      return "\(number)"
+    }
+    
+    return formmattingNumber
+  }
 }

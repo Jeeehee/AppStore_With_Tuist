@@ -23,6 +23,7 @@ public final class AppSearchRepositoryImpl: AppSearchRepository {
   }
   
   // MARK: - AppSearchRepository
+  
   public func search<T: Decodable>(_ type: T.Type, with: URLRequest) -> Single<T> {
     Single<T>.create { [weak self] observer in
       guard let self else { return Disposables.create() }

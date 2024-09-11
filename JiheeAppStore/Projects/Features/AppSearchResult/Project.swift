@@ -23,6 +23,7 @@ let project = Project.makeProject(
     .Module.type(.Foundation(.AppFoundation)).dependency,
     .Module.type(.Foundation(.Logger)).dependency,
     .Module.type(.Foundation(.UI)).dependency,
+    .Module.type(.Features(.AppDetail)).dependency
   ],
   hasTests: false
 )

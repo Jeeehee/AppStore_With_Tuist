@@ -15,6 +15,7 @@ public extension TargetDependency {
     case RxGesture
     case RIBs
     case SnapKit
+    case Kingfisher
     
     public var dependency: TargetDependency {
       .package(product: rawValue)
