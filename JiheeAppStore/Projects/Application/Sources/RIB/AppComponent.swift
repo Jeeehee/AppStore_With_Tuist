@@ -14,6 +14,7 @@ import AppDetail
 
 import Usecase
 import UsecaseImpl
+import Entities
 import Repository
 import RepositoryImpl
 
@@ -26,7 +27,9 @@ final class AppComponent:
   AppRootDependency,
   HomeDependency,
   SearchBarDependency,
-  RecentSearchHistoryDependency
+  RecentSearchHistoryDependency,
+  AppSearchResultDependency,
+  AppDetailDependency
 {
   
   // MARK: - Builder
@@ -41,6 +44,14 @@ final class AppComponent:
   
   var recentSearchHistoryBuilder: RecentSearchHistoryBuildable {
     RecentSearchHistoryBuilder(dependency: self)
+  }
+  
+  var appSearchResultBuilder: AppSearchResultBuildable {
+    AppSearchResultBuilder(dependency: self)
+  }
+  
+  var appDetailBuilder: AppDetailBuildable {
+    AppDetailBuilder(dependency: self)
   }
   
   // MARK: - Repository
@@ -60,6 +71,7 @@ final class AppComponent:
   // MARK: - Model Stream
   
   let searchHistoryModelStream: SearchHistoryModelStream
+  let appSearchModelStream: AppSearchModelStream
   
   // MARK: - Initialization
   
@@ -70,5 +82,6 @@ final class AppComponent:
     self.searchHistoryRepository = SearchHistoryRepositoryImpl(storage: storage)
     self.appStoreUsecase = AppStoreUsecaseImpl(appSearchRepository: appSearchRepository, searchHistoryRepository: searchHistoryRepository)
     self.searchHistoryModelStream = SearchHistoryModelStream()
+    self.appSearchModelStream = AppSearchModelStream()
   }
 }

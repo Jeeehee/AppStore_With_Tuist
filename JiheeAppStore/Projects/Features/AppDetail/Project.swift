@@ -18,11 +18,12 @@ let project = Project.makeProject(
     .SPM.RxRelay.dependency,
     .SPM.RxGesture.dependency,
     .SPM.SnapKit.dependency,
+    .SPM.Kingfisher.dependency,
     .Module.type(.Domain(.Entities)).dependency,
     .Module.type(.Domain(.Usecase)).dependency,
     .Module.type(.Foundation(.AppFoundation)).dependency,
     .Module.type(.Foundation(.Logger)).dependency,
-    .Module.type(.Foundation(.UI)).dependency,
+    .Module.type(.Foundation(.UI)).dependency
   ],
   hasTests: false
 )

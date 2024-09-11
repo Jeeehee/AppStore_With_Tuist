@@ -10,6 +10,7 @@ import UIKit
 
 import RIBs
 
+import AppFoundation
 import Home
 
 // MARK: - AppRootInteractable
@@ -66,13 +67,14 @@ final class AppRootRouter:
       self.homeRouter = router
       attachChild(router)
       
-      viewController.presentFullScreen(router.viewControllable)
+      let navigationController = NavigationViewControllable(root: router.viewControllable)
+      viewController.presentFullScreen(navigationController)
     }
   }
   
   func detachHome() {
     guard let router = homeRouter else {
-        return
+      return
     }
     
     homeRouter = nil

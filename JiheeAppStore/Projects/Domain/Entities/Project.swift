@@ -11,6 +11,10 @@ import ProjectDescriptionHelpers
 let project = Project.makeProject(
   name: Modules.Domain(.Entities).name,
   product: .framework,
-  dependencies: [],
+  dependencies: [
+    .SPM.RxSwift.dependency,
+    .SPM.RxRelay.dependency,
+    .Module.type(.Foundation(.AppFoundation)).dependency
+  ],
   hasTests: false
 )
