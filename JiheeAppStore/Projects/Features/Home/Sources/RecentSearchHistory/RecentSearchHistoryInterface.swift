@@ -8,10 +8,12 @@
 
 import RIBs
 
+import Entities
+
 // MARK: - RecentSearchHistoryBuildable
 
 public protocol RecentSearchHistoryBuildable: Buildable {
-    func build(withListener listener: RecentSearchHistoryListener) -> RecentSearchHistoryRouting
+  func build(withListener listener: RecentSearchHistoryListener) -> RecentSearchHistoryRouting
 }
 
 // MARK: - RecentSearchHistoryRouting
@@ -23,7 +25,7 @@ public protocol RecentSearchHistoryRouting: ViewableRouting {
 // MARK: - RecentSearchHistoryListener
 
 public protocol RecentSearchHistoryListener: AnyObject {
-
+  
 }
 
 // MARK: - RecentSearchHistoryDependency

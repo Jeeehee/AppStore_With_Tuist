@@ -8,6 +8,8 @@
 
 import RIBs
 
+import Entities
+
 public final class RecentSearchHistoryComponent: Component<RecentSearchHistoryDependency> {
   fileprivate var searchHistoryModelStream: SearchHistoryModelStream {
     dependency.searchHistoryModelStream
@@ -26,7 +28,6 @@ public final class RecentSearchHistoryBuilder:
   }
   
   public func build(withListener listener: RecentSearchHistoryListener) -> RecentSearchHistoryRouting {
-    let component = RecentSearchHistoryComponent(dependency: dependency)
     let viewController = RecentSearchHistoryViewController()
     let interactor = RecentSearchHistoryInteractor(
       presenter: viewController,

@@ -17,10 +17,13 @@ protocol RecentSearchHistoryPresentable: Presentable {
   func bindRecentSearchHistory(_ history: [SearchHistory])
 }
 
+// MARK: - RecentSearchHistoryInteractor
+
 final class RecentSearchHistoryInteractor:
   PresentableInteractor<RecentSearchHistoryPresentable>,
   RecentSearchHistoryInteractable,
-  RecentSearchHistoryPresentableListener {
+  RecentSearchHistoryPresentableListener
+{
   
   weak var router: RecentSearchHistoryRouting?
   weak var listener: RecentSearchHistoryListener?

@@ -30,17 +30,7 @@ final class RecentSearchHistoryViewController:
   weak var listener: RecentSearchHistoryPresentableListener?
   
   private let collectionViewLayout = CollectionViewLeftAlignFlowLayout()
-//    .builder
-//    .with {
-//      $0.scrollDirection = .vertical
-//      $0.minimumLineSpacing = 10
-//      $0.minimumInteritemSpacing = 10
-//      $0.sectionInset = UIEdgeInsets(top: 50, left: 20, bottom: 50, right: 20)
-//      $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//
-//    }
-//    .build()
-//  
+
   // MARK: - UI
   
   private enum UI {

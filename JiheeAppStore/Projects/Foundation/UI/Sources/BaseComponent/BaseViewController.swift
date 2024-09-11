@@ -46,7 +46,7 @@ open class BaseViewController:
     super.viewDidLoad()
     navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     view.setNeedsUpdateConstraints()
-    navigationController?.navigationBar.isHidden = true
+    navigationController?.navigationBar.isHidden = false
     view.backgroundColor = .white
   }
   

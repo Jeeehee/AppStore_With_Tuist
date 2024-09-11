@@ -23,7 +23,10 @@ protocol RecentSearchHistoryViewControllable: ViewControllable {
 
 // MARK: - RecentSearchHistoryRouter
 
-final class RecentSearchHistoryRouter: ViewableRouter<RecentSearchHistoryInteractable, RecentSearchHistoryViewControllable>, RecentSearchHistoryRouting {
+final class RecentSearchHistoryRouter:
+  ViewableRouter<RecentSearchHistoryInteractable, RecentSearchHistoryViewControllable>,
+  RecentSearchHistoryRouting
+{
   
   // MARK: - Initialization
   
