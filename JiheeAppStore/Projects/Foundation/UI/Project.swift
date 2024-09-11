@@ -20,6 +20,5 @@ let project = Project.makeProject(
     ,
     .Module.type(.Foundation(.AppFoundation)).dependency
   ],
-  resources: ["Resources/**"],
-  hasTests: true
+  resources: ["Resources/**"]
 )

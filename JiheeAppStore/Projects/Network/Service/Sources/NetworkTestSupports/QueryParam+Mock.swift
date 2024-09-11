@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct QueryParamMock: Encodable {
+public struct QueryParamMock: Encodable {
   let term: String
   let country: String = "kr"
   let entity: String = "software"
   
-  init(term: String) {
+  public init(term: String) {
     self.term = term
   }
 }

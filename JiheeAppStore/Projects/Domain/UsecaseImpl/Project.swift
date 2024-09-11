@@ -19,6 +19,7 @@ let project = Project.makeProject(
     .Module.type(.Domain(.Entities)).dependency,
     .Module.type(.Domain(.Usecase)).dependency,
     .Module.type(.Domain(.Repository)).dependency,
-  ],
-  hasTests: false
+    .Module.type(.Network(.Model)).dependency,
+    .Module.type(.Network(.Service)).dependency
+  ]
 )

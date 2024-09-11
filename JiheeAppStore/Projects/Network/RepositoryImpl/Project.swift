@@ -22,5 +22,6 @@ let project = Project.makeProject(
     .Module.type(.Network(.Storage)).dependency,
     .Module.type(.Domain(.Entities)).dependency,
     .Module.type(.Domain(.Repository)).dependency
-  ]
+  ],
+  hasTests: false
 )

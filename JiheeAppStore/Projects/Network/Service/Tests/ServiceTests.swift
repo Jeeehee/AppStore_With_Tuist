@@ -18,7 +18,7 @@ class ServiceTests: XCTestCase {
   private var mockResponse: MockURLSession.Response {
     let data: Data? = MockURLSession.loadJSONData()
     let successResponse = HTTPURLResponse(
-      url: APITarget.test.baseURL!,
+      url: APITargetMock.test.baseURL!,
       statusCode: 200,
       httpVersion: nil,
       headerFields: nil
@@ -39,7 +39,7 @@ class ServiceTests: XCTestCase {
   
   func test_API_잘_생성되는지() {
     // Given
-    let prepayAPI = APITarget.test.baseURL?.absoluteString
+    let prepayAPI = APITargetMock.test.baseURL?.absoluteString
     
     // When
     let testAPI = "https://itunes.apple.com/search"
@@ -54,7 +54,7 @@ class ServiceTests: XCTestCase {
     let queryMock = QueryParamMock.init(term: "KakaoBank").toQueryParameters()
     
     // When
-    let prepayAPI = APITarget.test.baseURL?.appendingQueryItems(queryMock ?? []).absoluteString ?? ""
+    let prepayAPI = APITargetMock.test.baseURL?.appendingQueryItems(queryMock ?? []).absoluteString ?? ""
     
     // Then
     XCTAssertTrue(queryStrings.filter { !prepayAPI.contains($0) }.isEmpty)
@@ -62,8 +62,7 @@ class ServiceTests: XCTestCase {
   
   func test_API_요청_잘_되는지() async {
     // Given
-    sut = NetworkAdapterImpl(session: MockURLSession(response: mockResponse))
-    let request = URLRequest(url: APITarget.test.baseURL!)
+    let request = URLRequest(url: APITargetMock.test.baseURL!)
     let data = MockURLSession.loadJSONData()
     
     // When

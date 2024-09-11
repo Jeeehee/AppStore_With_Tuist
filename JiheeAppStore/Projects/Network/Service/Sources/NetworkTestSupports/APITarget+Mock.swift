@@ -9,35 +9,34 @@
 import Foundation
 
 import Model
-import Service
 
-enum APITarget {
+public enum APITargetMock {
   case test
   case search(keyword: String)
 }
 
-extension APITarget: Requestable {
-  var scheme: String {
+extension APITargetMock: Requestable {
+  public var scheme: String {
     return "https"
   }
   
-  var host: String {
+  public var host: String {
     return "itunes.apple.com"
   }
   
-  var path: String {
+  public var path: String {
     "/search"
   }
   
-  var baseURL: URL? {
+  public var baseURL: URL? {
     makeBaseURL()
   }
   
-  var httpMethod: HTTPMethod {
+  public var httpMethod: HTTPMethod {
     .get
   }
   
-  var headers: HTTPHeaders? {
+  public var headers: HTTPHeaders? {
     .init([HTTPHeader.accept, HTTPHeader.contentType])
   }
 

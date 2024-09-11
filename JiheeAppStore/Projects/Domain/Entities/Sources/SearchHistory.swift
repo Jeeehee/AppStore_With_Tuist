@@ -14,3 +14,12 @@ public struct SearchHistory: Equatable {
     self.keyword = keyword
   }
 }
+
+public extension SearchHistory {
+  static let mock: [Self] = [.init(keyword: "카카오뱅크"),
+                             .init(keyword: "카카오"),
+                             .init(keyword: "날씨"),
+                             .init(keyword: "캘린더ㅏ"),
+                             .init(keyword: "선물")
+  ]
+}

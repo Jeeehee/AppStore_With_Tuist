@@ -15,6 +15,5 @@ let project = Project.makeProject(
     .SPM.RxSwift.dependency,
     .Module.type(.Foundation(.AppFoundation)).dependency,
     .Module.type(.Network(.Model)).dependency
-  ],
-  hasTests: true
+  ]
 )

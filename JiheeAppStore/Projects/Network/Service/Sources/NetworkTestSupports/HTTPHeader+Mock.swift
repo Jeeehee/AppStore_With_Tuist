@@ -8,9 +8,7 @@
 
 import Foundation
 
-import Service
-
-extension HTTPHeader {
+public extension HTTPHeader {
   static let accept = HTTPHeader()
     .builder
     .set(\.name, to: "accept")

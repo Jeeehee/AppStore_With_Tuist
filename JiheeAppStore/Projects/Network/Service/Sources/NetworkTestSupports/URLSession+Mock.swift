@@ -8,7 +8,6 @@
 
 import Foundation
 
-import Service
 import Model
 
 // MARK: - MockURLSessionDataTask
@@ -29,14 +28,14 @@ final class MockURLSessionDataTask: URLSessionDataTask {
 
 // MARK: - MockURLSession
 
-final class MockURLSession: URLSessionProtocol {
-  typealias Response = (data: Data?, urlResponse: HTTPURLResponse?, error: Error?)
+public final class MockURLSession: URLSessionProtocol {
+  public typealias Response = (data: Data?, urlResponse: HTTPURLResponse?, error: Error?)
   
   let response: Response
   
   private var dataTask: MockURLSessionDataTask?
   
-  init(response: Response) {
+  public init(response: Response) {
     self.response = response
   }
   
