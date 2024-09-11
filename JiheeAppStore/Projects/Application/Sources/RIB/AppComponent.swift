@@ -9,7 +9,6 @@
 import RIBs
 
 import Home
-import AppSearchResult
 import AppDetail
 
 import Usecase
@@ -26,9 +25,7 @@ import Storage
 final class AppComponent:
   AppRootDependency,
   HomeDependency,
-  SearchBarDependency,
   RecentSearchHistoryDependency,
-  AppSearchResultDependency,
   AppDetailDependency
 {
   
@@ -38,18 +35,10 @@ final class AppComponent:
     HomeBuilder(dependency: self)
   }
   
-  var searchBarBuilder: SearchBarBuildable {
-    SearchBarBuilder(dependency: self)
-  }
-  
   var recentSearchHistoryBuilder: RecentSearchHistoryBuildable {
     RecentSearchHistoryBuilder(dependency: self)
   }
-  
-  var appSearchResultBuilder: AppSearchResultBuildable {
-    AppSearchResultBuilder(dependency: self)
-  }
-  
+
   var appDetailBuilder: AppDetailBuildable {
     AppDetailBuilder(dependency: self)
   }

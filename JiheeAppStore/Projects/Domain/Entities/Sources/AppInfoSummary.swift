@@ -23,6 +23,8 @@ public struct AppInfoSummary: Codable, Equatable {
   public let userRatingCount: Int
   /// 별점
   public let averageUserRating: Double
+  /// 앱 공유 URL
+  public let trackViewUrl: String
   
   public init(
     artworkUrl100: String,
@@ -31,7 +33,8 @@ public struct AppInfoSummary: Codable, Equatable {
     trackId: Int,
     genres: [String],
     userRatingCount: Int,
-    averageUserRating: Double
+    averageUserRating: Double,
+    trackViewUrl: String
   ) {
     self.artworkUrl100 = artworkUrl100
     self.trackName = trackName
@@ -40,6 +43,7 @@ public struct AppInfoSummary: Codable, Equatable {
     self.genres = genres
     self.userRatingCount = userRatingCount
     self.averageUserRating = averageUserRating
+    self.trackViewUrl = trackViewUrl
   }
 }
 
@@ -57,6 +61,8 @@ public extension AppInfoSummary {
     trackId: 1258016944,
     genres: ["금융"],
     userRatingCount: 200000,
-    averageUserRating: 5
+    averageUserRating: 5,
+    trackViewUrl:
+      "https://apps.apple.com/kr/app/%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%B1%85%ED%81%AC/id1258016944?uo=4"
     )
 }

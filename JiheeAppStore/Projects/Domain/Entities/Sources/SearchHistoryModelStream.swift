@@ -20,16 +20,17 @@ public final class SearchHistoryModelStream {
   public var searchHistoryStream: Observable<[SearchHistory]> { searchHistoryRelay.asObservable() }
   private let searchHistoryRelay = BehaviorRelay<[SearchHistory]>(value: [])
   
-  public func updateSearchHistory(with keyword: String) {
-    var currentHistory = searchHistoryRelay.value
-    currentHistory.insert(.init(keyword: keyword), at: 0)
-    searchHistoryRelay.accept(currentHistory)
-  }
-  
   // MARK: - Update
   
+  /// Storage에서 읽어올때
   public func updateSearchHistory(_ history: [SearchHistory]) {
     searchHistoryRelay.accept(history)
+  }
+  
+  public func updateSearchHistory(with keyword: String) {
+    var currentHistory = searchHistoryRelay.value.filter { $0.keyword != keyword }
+    currentHistory.insert(.init(keyword: keyword), at: 0)
+    searchHistoryRelay.accept(currentHistory)
   }
   
   public init() {}

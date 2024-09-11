@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SearchHistory {
+public struct SearchHistory: Equatable {
   public let keyword: String
   
   public init(keyword: String) {
