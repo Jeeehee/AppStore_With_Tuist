@@ -10,7 +10,6 @@ import Foundation
 
 import CoreData
 
-import Storage
 import Entities
 
 final class MockCoreDataStorage: CoreDataStorageProtocol {
