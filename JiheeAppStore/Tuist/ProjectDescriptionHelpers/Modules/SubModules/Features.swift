@@ -13,7 +13,6 @@ public enum Features:
 {
   
   case Home
-  case AppSearchResult
   case AppDetail
   
   public var name: String {

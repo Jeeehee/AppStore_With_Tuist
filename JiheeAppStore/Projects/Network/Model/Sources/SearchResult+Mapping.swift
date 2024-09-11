@@ -19,17 +19,16 @@ public extension AppInfo {
       trackId: trackID,
       genres: genres,
       userRatingCount: userRatingCount,
-      averageUserRating: averageUserRating
+      averageUserRating: averageUserRating,
+      trackViewUrl: trackViewURL
     )
   }
   
   func toAppInfoDetail() -> AppInfoDetail {
     .init(
       appInfoSummary: toAppInfoSummary(),
-      trackViewUrl: trackViewURL,
       contentAdvisoryRating: contentAdvisoryRating,
       sellerName: sellerName,
-      languageCodesISO2A: languageCodesISO2A,
-      releaseNotes: releaseNotes)
+      languageCodesISO2A: languageCodesISO2A)
   }
 }

@@ -16,7 +16,6 @@ import SnapKit
 
 import UI
 import AppFoundation
-import AppSearchResult
 import Entities
 
 protocol HomePresentableListener: AnyObject {

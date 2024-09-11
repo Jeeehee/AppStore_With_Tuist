@@ -41,6 +41,7 @@ final class AppInfoSummaryCollectionViewCell: BaseCollectionViewCell {
       $0.alignment = .leading
       $0.axis = .vertical
       $0.spacing = 5
+      $0.distribution = .fillProportionally
     }
     .build()
   
@@ -118,7 +119,6 @@ final class AppInfoSummaryCollectionViewCell: BaseCollectionViewCell {
     appImageView.image = nil
     titleLabel.text = nil
     descriptionLabel.text = nil
-    starImageView.image = nil
     ratingLabel.text = nil
     ratingCountLabel.text = nil
   }
@@ -130,7 +130,7 @@ final class AppInfoSummaryCollectionViewCell: BaseCollectionViewCell {
     titleLabel.text = information.trackName
     descriptionLabel.text = information.genres.joined()
     ratingLabel.text = String(format: "%.1f", information.averageUserRating)
-    ratingCountLabel.text = "(\(String.numberFormatting(number: information.userRatingCount))개 평가)"
+    ratingCountLabel.text = "(\(String.numberFormatting(number: information.userRatingCount)))"
     screenshotsView.fetchImageViews(information.screenshotUrls)
     appID = String(information.trackId)
   }
@@ -173,6 +173,7 @@ extension AppInfoSummaryCollectionViewCell {
     makeDownloadButtonViewConstraints()
     makeAppInfoStackViewConstraints()
     makeScreenshotsViewConstraints()
+    makeStarImageViewConstraints()
   }
   
   private func makeAppImageViewConstraints() {
@@ -195,8 +196,7 @@ extension AppInfoSummaryCollectionViewCell {
     appInfoStackView.snp.makeConstraints {
       $0.centerY.equalTo(appImageView)
       $0.left.equalTo(appImageView.snp.right).offset(20)
-      $0.right.equalTo(downloadButton.snp.left).offset(20)
-      $0.height.equalTo(appImageView)
+      $0.right.equalTo(downloadButton.snp.left).offset(-20)
     }
   }
   
@@ -204,6 +204,13 @@ extension AppInfoSummaryCollectionViewCell {
     screenshotsView.snp.makeConstraints {
       $0.top.equalTo(appInfoStackView.snp.bottom).offset(20)
       $0.left.right.bottom.equalToSuperview()
+    }
+  }
+  
+  private func makeStarImageViewConstraints() {
+    starImageView.snp.makeConstraints {
+      $0.size.equalTo(15)
+      $0.centerY.equalToSuperview()
     }
   }
 }

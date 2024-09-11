@@ -39,7 +39,7 @@ public extension ViewControllable {
   
   func presentFullScreen(
     _ viewControllable: ViewControllable,
-    animated: Bool = true,
+    animated: Bool = false,
     completion: (() -> Void)? = nil
   ) {
     DispatchQueue.main.async { [weak self] in

@@ -20,8 +20,11 @@ final class AppInfoCell: BaseCollectionViewCell {
   
   // MARK: - Properties
   
+  weak var listener: AppInfoListener?
+  
   private var disposeBag: DisposeBag = DisposeBag()
   private var appID: String?
+  private var link: String?
   
   // MARK: - UI
   
@@ -47,8 +50,7 @@ final class AppInfoCell: BaseCollectionViewCell {
   private let titleLabel = UILabel()
     .builder
     .with {
-      $0.numberOfLines = 0
-      $0.font = .body_Bold
+      $0.font = .title2
       $0.textColor = .text
     }
     .build()
@@ -65,6 +67,7 @@ final class AppInfoCell: BaseCollectionViewCell {
     .builder
     .with {
       $0.setImage(.init(systemName: "square.and.arrow.up"), for: .normal)
+      $0.tintColor = .black90
     }
     .build()
   
@@ -75,7 +78,7 @@ final class AppInfoCell: BaseCollectionViewCell {
       $0.setTitleColor(.text, for: .normal)
       $0.clipsToBounds = true
       $0.layer.cornerRadius = 15
-      $0.backgroundColor = .black20
+      $0.backgroundColor = .kakaoBankYellow
       $0.titleLabel?.font = .custom(.medium, 12)
     }
     .build()
@@ -102,6 +105,7 @@ final class AppInfoCell: BaseCollectionViewCell {
     titleLabel.text = information.trackName
     descriptionLabel.text = information.genres.joined()
     appID = String(information.trackId)
+    link = information.trackViewUrl
   }
   
   private func handleAppImage(_ url: String) {
@@ -121,6 +125,12 @@ final class AppInfoCell: BaseCollectionViewCell {
         
         UIApplication.shared.open(link)
       }
+      .disposed(by: disposeBag)
+    
+    shareButton.rx
+      .tapWithPreventDuplication()
+      .asDriver(onErrorDriveWith: .empty())
+      .drive(with: self) { owner, _ in owner.listener?.didTapShareButton(owner.link ?? "") }
       .disposed(by: disposeBag)
   }
   
@@ -147,15 +157,15 @@ extension AppInfoCell {
   private func makeAppImageViewConstraints() {
     appImageView.snp.makeConstraints {
       $0.top.left.equalTo(contentView)
-      $0.width.height.equalTo(80)
+      $0.width.height.equalTo(100)
     }
   }
   
   private func makeShareButtonConstraints() {
     shareButton.snp.makeConstraints {
-      $0.centerY.equalTo(appImageView)
+      $0.bottom.equalTo(appImageView)
       $0.right.equalTo(contentView).offset(-20)
-      $0.size.equalTo(30)
+      $0.size.equalTo(40)
     }
   }
   
@@ -178,4 +188,6 @@ extension AppInfoCell {
   
 }
 
-
+protocol AppInfoListener: AnyObject {
+  func didTapShareButton(_ url: String)
+}

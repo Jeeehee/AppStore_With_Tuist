@@ -28,8 +28,7 @@ final class CustomStackView: UIStackView {
   let titleLabel = UILabel()
     .builder
     .with {
-      $0.numberOfLines = 0
-      $0.font = .body_Bold
+      $0.font = .detail_Medium
       $0.textColor = .text
       $0.textAlignment = .center
     }
@@ -38,7 +37,8 @@ final class CustomStackView: UIStackView {
   let descriptionLabel = UILabel()
     .builder
     .with {
-      $0.font = .detail_Medium
+      $0.numberOfLines = 0
+      $0.font = .body_Bold
       $0.textColor = .text
       $0.textAlignment = .center
     }
@@ -74,7 +74,7 @@ final class CustomStackView: UIStackView {
   
   private func layout() {
     stackView.snp.makeConstraints {
-      $0.edges.equalToSuperview()
+      $0.edges.equalToSuperview().inset(30)
     }
   }
 }

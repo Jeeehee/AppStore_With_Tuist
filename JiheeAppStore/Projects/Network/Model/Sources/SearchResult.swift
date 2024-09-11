@@ -29,7 +29,7 @@ public struct AppInfo: Decodable, Equatable {
   let userRatingCountForCurrentVersion: Int
   let trackContentRating: String
   let currentVersionReleaseDate: String
-  let releaseNotes, artistName: String
+  let artistName: String
   let genres: [String]
   let price: Int
   let description: String
@@ -55,7 +55,7 @@ public struct AppInfo: Decodable, Equatable {
     case artworkUrl60, artworkUrl100, kind
     case minimumOSVersion = "minimumOsVersion"
     case averageUserRatingForCurrentVersion, languageCodesISO2A, fileSizeBytes
-    case formattedPrice, userRatingCountForCurrentVersion, trackContentRating, currentVersionReleaseDate, releaseNotes, artistName, genres, price, description
+    case formattedPrice, userRatingCountForCurrentVersion, trackContentRating, currentVersionReleaseDate, artistName, genres, price, description
     case genreIDS = "genreIds"
     case primaryGenreName
     case primaryGenreID = "primaryGenreId"

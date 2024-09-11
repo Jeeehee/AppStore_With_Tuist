@@ -1,5 +1,5 @@
 //
-//  CollectionViewInCollectionViewDataSource.swift
+//  AppDetailCollectionViewDataSource.swift
 //  AppDetail
 //
 //  Created by Jihee hwang on 9/11/24.
@@ -10,7 +10,7 @@ import UIKit
 
 import Entities
 
-final class CollectionViewInCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+final class AppDetailCollectionViewDataSource: NSObject, UICollectionViewDataSource {
   weak var listener: ShareURLListener?
   
   var data: AppInfoDetail?
@@ -38,7 +38,7 @@ final class CollectionViewInCollectionViewDataSource: NSObject, UICollectionView
     case .appInfomation:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppInfoCell.identifier, for: indexPath) as? AppInfoCell else { return UICollectionViewCell() }
       cell.fetchAppInfo(data.appInfoSummary)
-      cell.delegate = self
+      cell.listener = self
       return cell
       
     case .detailInfo:
@@ -51,6 +51,12 @@ final class CollectionViewInCollectionViewDataSource: NSObject, UICollectionView
       cell.fetchDetail(data.appInfoSummary.screenshotUrls[indexPath.item])
       return cell
     }
+  }
+}
+
+extension AppDetailCollectionViewDataSource: AppInfoListener {
+  func didTapShareButton(_ url: String) {
+    listener?.shareURL(url)
   }
 }
 

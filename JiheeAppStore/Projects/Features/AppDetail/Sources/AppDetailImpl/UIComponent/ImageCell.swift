@@ -48,12 +48,10 @@ final class ImageCell: BaseCollectionViewCell {
   
   // MARK: - Function
   
-  func fetchDetail(_ screenShots: [String]) {
-    let urls = screenShots.compactMap { URL(string: $0) }
+  func fetchDetail(_ imageURL: String) {
+    guard let url = URL(string: imageURL) else { return }
 
-    urls.forEach {
-      imageView.kf.setImage(with: $0, options: [.cacheMemoryOnly])
-    }
+    imageView.kf.setImage(with: url, options: [.cacheMemoryOnly])
   }
   
 }

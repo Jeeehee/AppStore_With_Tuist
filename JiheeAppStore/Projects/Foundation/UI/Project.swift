@@ -15,7 +15,10 @@ let project = Project.makeProject(
     .SPM.SnapKit.dependency,
     .SPM.RxSwift.dependency,
     .SPM.RxCocoa.dependency,
+    .SPM.Kingfisher.dependency,
     .Module.type(.Foundation(.Logger)).dependency
+    ,
+    .Module.type(.Foundation(.AppFoundation)).dependency
   ],
   resources: ["Resources/**"],
   hasTests: true

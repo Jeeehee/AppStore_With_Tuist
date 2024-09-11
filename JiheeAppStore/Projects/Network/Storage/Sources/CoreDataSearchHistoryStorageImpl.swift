@@ -22,6 +22,8 @@ public class CoreDataSearchHistoryStorageImpl {
 extension CoreDataSearchHistoryStorageImpl: CoreDataSearchHistoryStorage {
   /// C
   public func createData(keyword: String) {
+    deleteExistingKeyword(keyword)
+    
     let search = SearchKeyword(context: coreDataStorage.viewContext)
     search.keyword = keyword
     search.searchTime = Date()
@@ -57,6 +59,19 @@ extension CoreDataSearchHistoryStorageImpl: CoreDataSearchHistoryStorage {
     
     keywords?.forEach { coreDataStorage.viewContext.delete($0) }
     coreDataStorage.saveContext()
+  }
+  
+  private func deleteExistingKeyword(_ keyword: String) {
+    let fetchRequest: NSFetchRequest<SearchKeyword> = SearchKeyword.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "keyword == %@", keyword)
+    
+    do {
+      let existingKeywords = try coreDataStorage.viewContext.fetch(fetchRequest)
+      existingKeywords.forEach { coreDataStorage.viewContext.delete($0) }
+    } catch {
+      let error = CoreDataStorageError.filedDeleteExisting(keyword)
+      Logger.error(error.errorDescription)
+    }
   }
   
 }

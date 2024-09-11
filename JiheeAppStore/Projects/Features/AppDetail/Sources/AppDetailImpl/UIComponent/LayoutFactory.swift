@@ -25,11 +25,11 @@ final class LayoutFactory {
   static func makeAppInfomationSection() -> NSCollectionLayoutSection {
     let itemSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(1.0),
-      heightDimension: .estimated(80))
+      heightDimension: .estimated(100))
     
     let groupSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(1.0),
-      heightDimension: .estimated(80))
+      heightDimension: .estimated(100))
     
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     
@@ -60,6 +60,7 @@ final class LayoutFactory {
     
     let section = NSCollectionLayoutSection(group: group)
     section.contentInsets.bottom = 30
+    section.contentInsets.trailing = 20
     
     return section
   }

@@ -30,7 +30,7 @@ final class AppDetailViewController:
 {
   
   weak var listener: AppDetailPresentableListener?
-  private let collectionViewDataSource = CollectionViewInCollectionViewDataSource()
+  private let collectionViewDataSource = AppDetailCollectionViewDataSource()
   
   // MARK: - UI
   
@@ -39,7 +39,7 @@ final class AppDetailViewController:
     static let backButtonWidth = 15.0
     static let backButtonHeight = 20.0
   }
-
+  
   private let backButton = UIBarButtonItem()
     .builder
     .with {
@@ -67,7 +67,7 @@ final class AppDetailViewController:
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     setupUI()
     bindLoadData()
     bindDidTapBackButton()
@@ -98,6 +98,15 @@ extension AppDetailViewController {
 extension AppDetailViewController {
   func bindAppInfoDetail(_ informations: AppInfoDetail) {
     collectionViewDataSource.data = informations
+    collectionView.reloadData()
+  }
+}
+
+extension AppDetailViewController: ShareURLListener {
+  func shareURL(_ url: String) {
+    let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+    activityVC.popoverPresentationController?.sourceView = self.view
+    present(activityVC, animated: true, completion: nil)
   }
 }
 
@@ -108,6 +117,7 @@ extension AppDetailViewController {
   private func setupUI() {
     navigationItem.leftBarButtonItem = backButton
     navigationController?.navigationBar.prefersLargeTitles = false
+    collectionViewDataSource.listener = self
     view.addSubview(collectionView)
     
     layout()
@@ -116,7 +126,7 @@ extension AppDetailViewController {
   private func layout() {
     makeCollectionViewConstraints()
   }
-
+  
   private func makeCollectionViewConstraints() {
     collectionView.snp.makeConstraints {
       $0.top.left.equalToSuperview().offset(UI.defaultPadding)

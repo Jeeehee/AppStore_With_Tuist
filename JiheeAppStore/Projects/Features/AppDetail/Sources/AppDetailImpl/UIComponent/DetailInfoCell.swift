@@ -23,8 +23,8 @@ final class DetailInfoCell: BaseCollectionViewCell {
   // MARK: - UI
   
   enum UI {
-    static let itemWidth = (UIScreen.width - 50) / 3
-    static let itemHeight = 80
+    static let itemWidth = (UIScreen.width - 70) / 3
+    static let itemHeight = 100
   }
   
   private lazy var ratingStackView = CustomStackView()
@@ -54,14 +54,14 @@ final class DetailInfoCell: BaseCollectionViewCell {
   
   func fetchDetail(_ information: AppInfoDetail) {
     ratingStackView.fetchData(
-      title: "\(String(format: "%.1f", information.appInfoSummary.averageUserRating))",
-      description: "\(String.numberFormatting(number: information.appInfoSummary.userRatingCount))")
+      title: "평가",
+      description: "\(String(format: "%.1f", information.appInfoSummary.averageUserRating))")
     centerStackView.fetchData(
-      title: information.sellerName,
-      description: "개발자")
+      title: "개발자",
+      description: information.sellerName)
     ageStackView.fetchData(
-      title: information.contentAdvisoryRating,
-      description: "연령")
+      title: "연령",
+      description: information.contentAdvisoryRating)
   }
   
 }
@@ -84,8 +84,7 @@ extension DetailInfoCell {
   
   private func makeRatingStackViewConstraints() {
     ratingStackView.snp.makeConstraints {
-      $0.top.bottom.equalTo(contentView)
-      $0.left.equalTo(contentView)
+      $0.top.bottom.left.equalTo(contentView)
       $0.width.equalTo(UI.itemWidth)
       $0.height.equalTo(UI.itemHeight)
     }
@@ -93,7 +92,7 @@ extension DetailInfoCell {
   
   private func makeCenterStackViewConstraints() {
     centerStackView.snp.makeConstraints {
-      $0.top.bottom.centerX.equalTo(contentView)
+      $0.center.equalTo(contentView)
       $0.width.equalTo(UI.itemWidth)
       $0.height.equalTo(UI.itemHeight)
     }
